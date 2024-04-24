@@ -1,0 +1,71 @@
+<template>
+  <header class="header">
+    <div class="header__logo">
+      <LogoIcon />
+      <h1 class="header__title">vue weather</h1>
+    </div>
+    <div class="header__right">
+      <button type="button" class="header__btn-change-color">
+        <InvertColorIcon />
+      </button>
+      <input type="text" class="header__search" placeholder="Выбрать город" />
+    </div>
+  </header>
+</template>
+
+<script>
+import LogoIcon from './Logo.vue'
+import InvertColorIcon from './InvertColor.vue'
+export default {
+  name: 'AppHeader',
+  components: {
+    LogoIcon,
+    InvertColorIcon,
+  },
+}
+</script>
+<style lang="scss">
+@import '@/assets/scss';
+.header {
+  display: flex;
+  justify-content: space-between;
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  &__title {
+    text-transform: uppercase;
+    font-size: 24px;
+    color: $blue;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30.48px;
+  }
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  &__btn-change-color {
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  &__search {
+    background-color: $blue-light;
+    color: $black;
+    padding: 9px 20px;
+    border: 1px solid;
+    border-radius: 5px;
+    font-weight: 500;
+    line-height: 19.5px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+  }
+}
+</style>
