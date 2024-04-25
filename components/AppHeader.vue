@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import LogoIcon from './Logo.vue'
-import InvertColorIcon from './InvertColor.vue'
+import LogoIcon from '@/components/icons/Logo.vue'
+import InvertColorIcon from '@/components/icons/InvertColor.vue'
 export default {
   name: 'AppHeader',
   components: {
@@ -29,6 +29,7 @@ export default {
 .header {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 30px;
   &__logo {
     display: flex;
     align-items: center;

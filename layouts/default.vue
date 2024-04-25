@@ -1,5 +1,5 @@
 <script>
-import AppHeader from '@/components/icons/AppHeader.vue'
+import AppHeader from '@/components/AppHeader.vue'
 
 export default {
   name: 'DefaultLayout',

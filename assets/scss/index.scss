@@ -1,6 +1,19 @@
 @import '_colors';
 @import '_typography';
+@import '_variables';
+@import '_component';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: 'Montserrat', sans-serif;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
 }
