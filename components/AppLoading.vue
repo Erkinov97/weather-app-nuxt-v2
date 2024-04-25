@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-loading" v-if="loading" >
+  <div v-if="loading" class="custom-loading">
     <div>
       <IconLogo />
     </div>

@@ -25,6 +25,32 @@ export default {
     CardInfo,
     CardWeek,
   },
+  data: () => ({
+    apiData: [],
+    error: null,
+    token: '309b6d9d6d8936c4fbe4bbd6572ef296',
+    icon: '',
+  }),
+  async mounted() {
+    await this.fetchData()
+  },
+  methods: {
+    async fetchData() {
+      try {
+        const res = await this.$axios.get('/forecast', {
+          params: {
+            q: 'Tashkent',
+            cnt: 7,
+            units: 'metric',
+            appid: this.token,
+          },
+        })
+        this.apiData = res.data
+      } catch (error) {
+        this.error = error
+      }
+    },
+  },
 }
 </script>
 <style lang="scss">

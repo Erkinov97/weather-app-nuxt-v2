@@ -62,7 +62,7 @@ export default {
   }
   &__body {
     margin-bottom: 15px;
-    h4{
+    h4 {
       font-weight: 500;
       font-size: 18px;
       line-height: 21.94px;
