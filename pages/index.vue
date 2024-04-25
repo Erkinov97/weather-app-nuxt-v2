@@ -43,8 +43,16 @@ export default {
   border-radius: 0 0 20px 20px;
   background-color: var(--white);
   &__list {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 20px;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .content,
+  .week__list {
+    flex-wrap: wrap;
   }
 }
 </style>

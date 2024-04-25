@@ -105,4 +105,12 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 1199px) {
+  .card {
+    &--info {
+      max-width: 100%;
+    }
+  }
+}
 </style>
