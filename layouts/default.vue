@@ -7,6 +7,10 @@ export default {
     AppHeader,
   },
   mounted() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      setTimeout(() => this.$nuxt.$loading.finish(), 1500)
+    })
     if (localStorage.getItem('darkMode') === 'true') {
       document.body.classList.add('dark-mode')
     }
