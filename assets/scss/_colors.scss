@@ -1,6 +1,13 @@
-$blue: #4793ff;
-$blue-light: #dae9ff;
-$white: #ffffff;
-$black: #000000;
-$gray: #939cb0;
-$gray-light: #b4b4b4;
+:root {
+  --blue: #4793ff;
+  --blue-light: #dae9ff;
+  --white: #ffffff;
+  --black: #000000;
+  --gray: #939cb0;
+  --gray-light: #b4b4b4;
+}
+
+.dark-mode {
+  --white: #333333;
+  --black: #fff;
+}

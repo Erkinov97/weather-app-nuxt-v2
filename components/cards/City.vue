@@ -40,7 +40,7 @@ export default {
 .card {
   &--city {
     padding: 20px;
-    background-color: $white;
+    background-color: var(--white);
     border-radius: 10px;
     max-width: 400px;
     width: 100%;
@@ -57,7 +57,7 @@ export default {
     font-weight: 500;
     line-height: 117.02px;
     margin: 0;
-    color: $blue;
+    color: var(--blue);
   }
   &__date {
     max-width: 174px;
@@ -65,7 +65,7 @@ export default {
     font-weight: 400;
     line-height: 48.76px;
     margin: 0;
-    color: $black;
+    color: var(--black);
   }
   &__info {
     display: flex;
@@ -75,7 +75,7 @@ export default {
     font-weight: 400;
     line-height: 30.48px;
     margin: 0;
-    color: $gray;
+    color: var(--gray);
     p {
       margin: 0;
     }

@@ -41,7 +41,7 @@ export default {
   padding: 20px;
   border: none;
   border-radius: 0 0 20px 20px;
-  background-color: $white;
+  background-color: var(--white);
   &__list {
     display: flex;
     gap: 20px;

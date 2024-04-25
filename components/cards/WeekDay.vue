@@ -44,12 +44,12 @@ export default {
   min-width: 149px;
   border: none;
   border-radius: 10px;
-  background-color: $blue-light;
+  background-color: var(--blue-light);
   padding: 11px;
   &__header {
     margin-bottom: 12px;
     h3 {
-      color: $black;
+      color: var(--black);
       font-size: 18px;
       font-weight: 500;
       line-height: 21.94px;
@@ -74,7 +74,7 @@ export default {
     }
   }
   p {
-    color: $gray;
+    color: var(--gray);
     font-size: 13px;
     line-height: 15.85px;
   }

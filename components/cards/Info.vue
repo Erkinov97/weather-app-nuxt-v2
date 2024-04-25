@@ -61,7 +61,7 @@ export default {
 .card {
   &--info {
     padding: 42px 32px;
-    background-color: $white;
+    background-color: var(--white);
     border-radius: 10px;
     max-width: 750px;
     width: 100%;
@@ -93,14 +93,14 @@ export default {
       padding: 6px;
       border: none;
       border-radius: 50%;
-      box-shadow: 1px 4px 10px -1px rgba($blue, 0.3);
+      box-shadow: var(--shadow);
     }
     &-title {
       min-width: 96px;
-      color: $gray;
+      color: var(--gray);
     }
     &-info {
-      color: $black;
+      color: var(--black);
       font-weight: 600;
     }
   }

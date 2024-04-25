@@ -6,6 +6,11 @@ export default {
   components: {
     AppHeader,
   },
+  mounted() {
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode')
+    }
+  },
 }
 </script>
 <template>
@@ -18,6 +23,7 @@ export default {
 <style lang="scss">
 .container {
   max-width: 1200px;
+  height: 100vh;
   padding: 20px 0;
   margin: 0 auto;
 }

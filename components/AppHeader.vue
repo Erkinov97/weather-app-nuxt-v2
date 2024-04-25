@@ -5,7 +5,11 @@
       <h1 class="header__title">vue weather</h1>
     </div>
     <div class="header__right">
-      <button type="button" class="header__btn-change-color">
+      <button
+        type="button"
+        class="header__btn-change-color"
+        @click="toggleTheme"
+      >
         <InvertColorIcon />
       </button>
       <input type="text" class="header__search" placeholder="Выбрать город" />
@@ -21,6 +25,15 @@ export default {
   components: {
     LogoIcon,
     InvertColorIcon,
+  },
+  methods: {
+    toggleTheme() {
+      document.body.classList.toggle('dark-mode')
+      localStorage.setItem(
+        'darkMode',
+        document.body.classList.contains('dark-mode')
+      )
+    },
   },
 }
 </script>
@@ -38,7 +51,7 @@ export default {
   &__title {
     text-transform: uppercase;
     font-size: 24px;
-    color: $blue;
+    color: var(--blue);
     font-weight: 700;
     font-size: 25px;
     line-height: 30.48px;
@@ -57,8 +70,8 @@ export default {
     cursor: pointer;
   }
   &__search {
-    background-color: $blue-light;
-    color: $black;
+    background-color: var(--blue-light);
+    color: var(--black);
     padding: 9px 20px;
     border: 1px solid;
     border-radius: 5px;
