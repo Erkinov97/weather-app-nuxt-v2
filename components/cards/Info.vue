@@ -1,10 +1,28 @@
 <template>
   <div class="card card--info">
     <ul class="card__list">
-      <li v-for="item in data" :key="item.id" class="card__list--item">
-        <component :is="item.icon" class="item-icon" />
-        <p class="item-title">{{ item.title }}</p>
-        <p class="item-info">{{ item.info }}</p>
+      <li class="card__list--item">
+        <TempIcon class="item-icon" />
+        <p class="item-title">Температура</p>
+        <p class="item-info">
+          {{ Math.round(data.temp) }}° - ощущается как
+          {{ Math.round(data.feels_like) }}°
+        </p>
+      </li>
+      <li class="card__list--item">
+        <PressureIcon class="item-icon" />
+        <p class="item-title">Давление</p>
+        <p class="item-info">{{ data.pressure }} мм ртутного столба</p>
+      </li>
+      <li class="card__list--item">
+        <PrecipitationIcon class="item-icon" />
+        <p class="item-title">Осадки</p>
+        <p class="item-info">{{ data.humidity }}%</p>
+      </li>
+      <li class="card__list--item">
+        <WindIcon class="item-icon" />
+        <p class="item-title">Ветер</p>
+        <p class="item-info">{{ data.speed }} м/с</p>
       </li>
     </ul>
   </div>
@@ -24,33 +42,15 @@ export default {
   },
   props: {
     data: {
-      type: Array,
-      default: () => [
-        {
-          id: 1,
-          icon: 'TempIcon',
-          title: 'Температура',
-          info: '20° - ощущается как 17°',
-        },
-        {
-          id: 2,
-          icon: 'PressureIcon',
-          title: 'Давление ',
-          info: '765 мм ртутного столба - нормальное',
-        },
-        {
-          id: 3,
-          icon: 'WindIcon',
-          title: 'Осадки',
-          info: 'Без осадков',
-        },
-        {
-          id: 4,
-          icon: 'PrecipitationIcon',
-          title: 'Ветер',
-          info: '3 м/с юго-запад - легкий ветер',
-        },
-      ],
+      type: Object,
+      required: true,
+      default: () => ({
+        temp: 0,
+        feels_like: 0,
+        pressure: 0,
+        speed: 0,
+        humidity: 0,
+      }),
     },
   },
 }

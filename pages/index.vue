@@ -1,20 +1,47 @@
 <template>
   <main>
     <section class="content">
-      <CardCity />
-      <CardInfo />
+      <CardCity
+        :data="{
+          temp: data.list[0].main.temp,
+          time: data.list[0].dt,
+          city: data['city'].name,
+          icon: customIcon(data.list[0].weather[0].main),
+        }"
+      />
+
+      <CardInfo
+        :data="{
+          temp: data.list[0].main.temp,
+          feels_like: data.list[0].main.feels_like,
+          pressure: data.list[0].main.pressure,
+          speed: data.list[0].wind.speed,
+          humidity: data.list[0].main.humidity,
+        }"
+      />
     </section>
     <section class="week card">
       <ul class="week__list">
-        <li v-for="weekday in 7" :key="weekday">
-          <CardWeek />
-        </li>
+        <template v-for="weekday in data.list">
+          <li v-if="weekday.dt_txt.includes('12:00:00')" :key="weekday.dt_txt">
+            <CardWeek
+              :data="{
+                temp_max: weekday.main.temp_max,
+                temp_min: weekday.main.temp_min,
+                dt: weekday.dt,
+                icon: customIcon(weekday.weather[0].main),
+                description: weekday.weather[0].description,
+              }"
+            />
+          </li>
+        </template>
       </ul>
     </section>
   </main>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import CardCity from '@/components/cards/City.vue'
 import CardInfo from '@/components/cards/Info.vue'
 import CardWeek from '@/components/cards/WeekDay.vue'
@@ -25,30 +52,31 @@ export default {
     CardInfo,
     CardWeek,
   },
-  data: () => ({
-    apiData: [],
-    error: null,
-    token: '309b6d9d6d8936c4fbe4bbd6572ef296',
-    icon: '',
-  }),
-  async mounted() {
-    await this.fetchData()
+  async fetch({ store }) {
+    await store.dispatch('weather/fetchData', {
+      q: 'Tashkent',
+    })
+  },
+  computed: {
+    ...mapState({
+      data: (state) => state.weather.data,
+    }),
+  },
+  watchQuery(newQuery) {
+    this.$store.dispatch('weather/fetchData', {
+      q: newQuery.q,
+    })
   },
   methods: {
-    async fetchData() {
-      try {
-        const res = await this.$axios.get('/forecast', {
-          params: {
-            q: 'Tashkent',
-            cnt: 7,
-            units: 'metric',
-            appid: this.token,
-          },
-        })
-        this.apiData = res.data
-      } catch (error) {
-        this.error = error
+    customIcon: function (icon) {
+      if (icon === 'Rain' || icon === 'Drizzle') {
+        return 'IconRain'
+      } else if (icon === 'Clouds') {
+        return 'IconMainlyCloudly'
+      } else if (icon === 'Clear') {
+        return 'IconSun'
       }
+      return 'img'
     },
   },
 }

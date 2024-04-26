@@ -1,37 +1,57 @@
 <template>
   <div class="week--card">
     <div class="week--card__header">
-      <h3>{{ data.day }}</h3>
-      <p>{{ data.date }}</p>
+      <h3>
+        {{
+          new Date(data.dt * 1000).toLocaleDateString('ru-Ru', {
+            weekday: 'short',
+          })
+        }}
+      </h3>
+      <p>
+        {{
+          new Date(data.dt * 1000).toLocaleString('ru-RU', {
+            day: 'numeric',
+            month: 'short',
+          })
+        }}
+      </p>
     </div>
     <div class="week--card__body">
       <component :is="data.icon" class="week--card__icon" />
-      <h4>{{ data.temp }}°</h4>
-      <p>{{ data.tempNight }}°</p>
+      <h4>{{ Math.round(data.temp_max) }}°</h4>
+      <p>{{ Math.round(data.temp_min) }}°</p>
     </div>
     <div class="week--card__footer">
-      <p>{{ data.weather }}</p>
+      <p>{{ data.description }}</p>
     </div>
   </div>
 </template>
 <script>
 import IconRain from '@/components/icons/Rain.vue'
+import IconMainlyCloudly from '@/components/icons/MainlyCloudly.vue'
+import IconSun from '@/components/icons/Sun.vue'
+import IconSmallRain from '@/components/icons/SmallRain.vue'
+import IconSmallRainSun from '@/components/icons/SmallRainSun.vue'
 export default {
   name: 'CardWeekDay',
   components: {
     IconRain,
+    IconMainlyCloudly,
+    IconSun,
+    IconSmallRain,
+    IconSmallRainSun,
   },
   props: {
     data: {
       type: Object,
-      // required: true,
+      required: true,
       default: () => ({
         icon: 'IconRain',
-        day: 'Сегодня',
-        date: '28 авг',
-        temp: '+18',
-        tempNight: '+15',
-        weather: 'Облачно',
+        dt: 0,
+        temp_max: '+18',
+        temp_min: '+15',
+        description: 'Облачно',
       }),
     },
   },
@@ -42,6 +62,7 @@ export default {
 
 .week--card {
   min-width: 149px;
+  height: 100%;
   border: none;
   border-radius: 10px;
   background-color: var(--blue-light);

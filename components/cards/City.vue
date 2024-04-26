@@ -2,31 +2,49 @@
   <div class="card card--city">
     <div class="card__header">
       <div>
-        <h2 class="card__temperature">{{ data.temperature }}°</h2>
-        <p class="card__date">{{ data.date }}</p>
+        <h2 class="card__temperature">{{ Math.floor(data.temp) }}°</h2>
+        <p class="card__date">Сегодня</p>
       </div>
-      <BigSun />
+      <component :is="data.icon" class="card__icon" />
     </div>
     <div class="card__info">
-      <p>Время: {{ data.time }}</p>
+      <p>
+        Время:
+        {{
+          new Date(Date(data.time)).toLocaleString('ru-RU', {
+            hour: 'numeric',
+            minute: 'numeric',
+          })
+        }}
+      </p>
       <p>Город: {{ data.city }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import BigSun from '../icons/BigSun.vue'
+import IconRain from '../icons/Rain.vue'
+import IconMainlyCloudly from '../icons/MainlyCloudly.vue'
+import IconSun from '../icons/Sun.vue'
+import IconSmallRain from '../icons/SmallRain.vue'
+import IconSmallRainSun from '../icons/SmallRainSun.vue'
 
 export default {
   name: 'CardCity',
-  components: { BigSun },
+  components: {
+    IconMainlyCloudly,
+    IconRain,
+    IconSmallRain,
+    IconSun,
+    IconSmallRainSun,
+  },
   props: {
     data: {
       type: Object,
-      // required: true,
+      required: true,
       default: () => ({
-        temperature: 20,
-        date: 'Сегодня',
+        icon: 'BigSun',
+        temp: 20,
         time: '21:54',
         city: 'Санкт-Петербург',
       }),
@@ -79,6 +97,10 @@ export default {
     p {
       margin: 0;
     }
+  }
+  &__icon {
+    width: 119px;
+    height: 119px;
   }
 }
 

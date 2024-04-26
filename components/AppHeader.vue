@@ -12,7 +12,13 @@
       >
         <InvertColorIcon />
       </button>
-      <input type="text" class="header__search" placeholder="Выбрать город" />
+      <input
+        v-model="searchCity"
+        type="text"
+        class="header__search"
+        placeholder="Выбрать город"
+        @input="updateSearch"
+      />
     </div>
   </header>
 </template>
@@ -26,6 +32,16 @@ export default {
     LogoIcon,
     InvertColorIcon,
   },
+  data() {
+    return {
+      debounceTimeout: null,
+      searchCity: '',
+    }
+  },
+  watchQuery: ['q'],
+  created() {
+    this.checkQuery()
+  },
   methods: {
     toggleTheme() {
       document.body.classList.toggle('dark-mode')
@@ -33,6 +49,19 @@ export default {
         'darkMode',
         document.body.classList.contains('dark-mode')
       )
+    },
+    updateSearch() {
+      clearTimeout(this.debounceTimeout)
+      this.debounceTimeout = setTimeout(() => {
+        this.$router.push({ query: { q: this.searchCity } })
+      }, 1000)
+    },
+    checkQuery() {
+      if (!this.$route.query.q) {
+        this.$router.push({ query: { q: 'Tashkent' } })
+      } else {
+        this.searchCity = this.$route.query.q
+      }
     },
   },
 }
