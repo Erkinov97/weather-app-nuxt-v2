@@ -62,10 +62,14 @@ export default {
       data: (state) => state.weather.data,
     }),
   },
-  watchQuery(newQuery) {
-    this.$store.dispatch('weather/fetchData', {
-      q: newQuery.q,
-    })
+  watch: {
+    '$route.query.q': {
+      handler(newQuery) {
+        this.$store.dispatch('weather/fetchData', {
+          q: newQuery,
+        })
+      },
+    },
   },
   methods: {
     customIcon: function (icon) {
